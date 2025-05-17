@@ -1,4 +1,8 @@
-import { findAllMovies, findMovieById } from "../data/movieData.js";
+import {
+	findAllMovies,
+	findMovieById,
+	findMoviesWithAwards,
+} from "../data/movieData.js";
 import { NotFoundError, DatabaseError } from "../utils/customError.js";
 
 export const getMovies = async (page, pageSize) => {
@@ -24,6 +28,19 @@ export const getMovieById = async (id) => {
 	} catch (error) {
 		throw new DatabaseError(
 			"An unexpected error occurred while fetching the movie",
+			500,
+			"INTERNAL_SERVER_ERROR"
+		);
+	}
+};
+
+export const getMoviesWithAwards = async () => {
+	try {
+		const movies = await findMoviesWithAwards();
+		return movies;
+	} catch (error) {
+		throw new DatabaseError(
+			"An unexpected error occurred while fetching movies with awards",
 			500,
 			"INTERNAL_SERVER_ERROR"
 		);

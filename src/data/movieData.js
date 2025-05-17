@@ -21,3 +21,11 @@ export async function findMovieById(id) {
 	const db = getDb();
 	return await db.collection("movies").findOne({ _id: new ObjectId(id) });
 }
+
+export async function findMoviesWithAwards() {
+	const db = getDb();
+	return await db
+		.collection("movies")
+		.find({ "awards.wins": { $gt: 0 } })
+		.toArray();
+}

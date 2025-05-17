@@ -1,4 +1,8 @@
-import { getMovies, getMovieById } from "../services/movieService.js";
+import {
+	getMovies,
+	getMovieById,
+	getMoviesWithAwards,
+} from "../services/movieService.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const getAllMovies = asyncHandler(async (req, res) => {
@@ -14,4 +18,9 @@ export const getAllMovies = asyncHandler(async (req, res) => {
 export const getMovie = asyncHandler(async (req, res) => {
 	const movie = await getMovieById(req.params.id);
 	res.json(movie);
+});
+
+export const getMoviesWithAwardsController = asyncHandler(async (req, res) => {
+	const movies = await getMoviesWithAwards();
+	res.json(movies);
 });
