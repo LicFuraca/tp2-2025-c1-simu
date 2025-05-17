@@ -30,3 +30,15 @@ export async function findMoviesWithAwards() {
 		.project({ title: 1, plot: 1, poster: 1, _id: 1 })
 		.toArray();
 }
+
+export async function findMoviesByLanguage(language, page, pageSize) {
+	const db = getDb();
+	const skip = (page - 1) * pageSize;
+
+	return await db
+		.collection("movies")
+		.find({ languages: { $in: [language] } })
+		.skip(skip)
+		.limit(pageSize)
+		.toArray();
+}

@@ -2,6 +2,7 @@ import {
 	findAllMovies,
 	findMovieById,
 	findMoviesWithAwards,
+	findMoviesByLanguage,
 } from "../data/movieData.js";
 import { NotFoundError, DatabaseError } from "../utils/customError.js";
 
@@ -44,5 +45,31 @@ export const getMoviesWithAwards = async () => {
 			500,
 			"INTERNAL_SERVER_ERROR"
 		);
+	}
+};
+
+export const getMoviesByLanguage = async (language, page, pageSize) => {
+	try {
+		if (!language) {
+			throw new NotFoundError("Language parameter is required");
+		}
+		const languageLower = language.toLowerCase();
+		const pageInt = parseInt(page);
+		const pageSizeInt = parseInt(pageSize);
+		const languageCapitalized =
+			languageLower.charAt(0).toUpperCase() + languageLower.slice(1);
+
+		const movies = await findMoviesByLanguage(
+			languageCapitalized,
+			pageInt,
+			pageSizeInt
+		);
+		if (!movies) {
+			throw new NotFoundError("No movies found in that language");
+		}
+
+		return movies;
+	} catch (error) {
+		throw error;
 	}
 };

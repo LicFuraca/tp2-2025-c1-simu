@@ -2,6 +2,7 @@ import {
 	getMovies,
 	getMovieById,
 	getMoviesWithAwards,
+	getMoviesByLanguage,
 } from "../services/movieService.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
@@ -22,5 +23,14 @@ export const getMovie = asyncHandler(async (req, res) => {
 
 export const getMoviesWithAwardsController = asyncHandler(async (req, res) => {
 	const movies = await getMoviesWithAwards();
+	res.json(movies);
+});
+
+export const getMoviesByLanguageController = asyncHandler(async (req, res) => {
+	const movies = await getMoviesByLanguage(
+		req.query.language,
+		req.query.page,
+		req.query.pageSize
+	);
 	res.json(movies);
 });
