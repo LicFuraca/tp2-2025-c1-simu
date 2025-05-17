@@ -27,5 +27,6 @@ export async function findMoviesWithAwards() {
 	return await db
 		.collection("movies")
 		.find({ "awards.wins": { $gt: 0 } })
+		.project({ title: 1, plot: 1, poster: 1, _id: 1 })
 		.toArray();
 }
