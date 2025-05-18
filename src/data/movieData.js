@@ -42,3 +42,13 @@ export async function findMoviesByLanguage(language, page, pageSize) {
 		.limit(pageSize)
 		.toArray();
 }
+
+export async function findMoviesOrderedByFresh() {
+	const db = getDb();
+	return await db
+		.collection("movies")
+		.find()
+		.limit(1000)
+		.sort({ "tomatoes.fresh": -1 })
+		.toArray();
+}

@@ -3,6 +3,7 @@ import {
 	getMovieById,
 	getMoviesWithAwards,
 	getMoviesByLanguage,
+	getMoviesOrderedByFresh,
 } from "../services/movieService.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
@@ -34,3 +35,10 @@ export const getMoviesByLanguageController = asyncHandler(async (req, res) => {
 	);
 	res.json(movies);
 });
+
+export const getMoviesOrderedByFreshController = asyncHandler(
+	async (req, res) => {
+		const movies = await getMoviesOrderedByFresh();
+		res.json(movies);
+	}
+);

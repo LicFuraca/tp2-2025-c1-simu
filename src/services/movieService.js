@@ -3,6 +3,7 @@ import {
 	findMovieById,
 	findMoviesWithAwards,
 	findMoviesByLanguage,
+	findMoviesOrderedByFresh,
 } from "../data/movieData.js";
 import { NotFoundError, DatabaseError } from "../utils/customError.js";
 
@@ -66,6 +67,19 @@ export const getMoviesByLanguage = async (language, page, pageSize) => {
 		);
 		if (!movies) {
 			throw new NotFoundError("No movies found in that language");
+		}
+
+		return movies;
+	} catch (error) {
+		throw error;
+	}
+};
+
+export const getMoviesOrderedByFresh = async () => {
+	try {
+		const movies = await findMoviesOrderedByFresh();
+		if (!movies) {
+			throw new NotFoundError("No movies found");
 		}
 
 		return movies;
