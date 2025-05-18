@@ -3,6 +3,7 @@ import {
 	getUserById,
 	registerUser,
 	loginUser,
+	getUserCommentsByUserId,
 } from "../services/userService.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { generateToken } from "../utils/jwt.js";
@@ -29,4 +30,9 @@ export const registerUserController = asyncHandler(async (req, res) => {
 export const getUserByIdController = asyncHandler(async (req, res) => {
 	const user = await getUserById(req.params.id);
 	res.json(user);
+});
+
+export const getUserCommentsByIdController = asyncHandler(async (req, res) => {
+	const comments = await getUserCommentsByUserId(req.params.id);
+	res.json(comments);
 });
