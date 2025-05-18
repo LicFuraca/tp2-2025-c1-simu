@@ -42,4 +42,12 @@ Si ya terminaste o son las 10:00 asegurate de seguir los siguientes pasos para l
 
 ## Listado de endpoint
 
--GET /api/movies?pageSize=[pageSize]&page=[page]
+- GET /api/movies/:id - Obtiene una película por ID
+- GET /api/movies/awards - Obtiene películas ganadoras de al menos un premio
+- GET /api/movies/languages?language=[language]&page=[page]&pageSize=[pageSize] - Obtiene películas filtradas por idioma
+- GET /api/movies/fresh - Obtiene películas ordenadas por puntaje 'fresh' de mayor a menor
+- GET /api/users - Lista todos los usuarios (requiere autenticación)
+- GET /api/users/:id - Obtiene un usuario por ID (requiere autenticación)
+- GET /api/users/:id/comments - Obtiene los comentarios de un usuario con información de las películas
+- POST /api/users/register - Registra un nuevo usuario
+- POST /api/users/login - Inicia sesión y devuelve un token JWT
