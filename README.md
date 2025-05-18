@@ -51,3 +51,5 @@ Si ya terminaste o son las 10:00 asegurate de seguir los siguientes pasos para l
 - GET /api/users/:id/comments - Obtiene los comentarios de un usuario con información de las películas
 - POST /api/users/register - Registra un nuevo usuario
 - POST /api/users/login - Inicia sesión y devuelve un token JWT
+
+Author: Martín Exequiel Díaz
